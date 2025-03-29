@@ -1,0 +1,13 @@
+services:
+  angular-app:
+    build: .
+    restart: always
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - angular-app

@@ -1,0 +1,7 @@
+@use "reset" as *;
+@use "variables" as *;
+
+html,
+body {
+  background: $white;
+}
