@@ -1,0 +1,13 @@
+@use "variables" as *;
+
+:host {
+  nav {
+    background-color: #3e3e3e;
+    padding: 30px;
+  }
+  ul {
+    display: flex;
+    color: $white;
+    gap: 30px;
+  }
+}
