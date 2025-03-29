@@ -5,9 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "npm run generate:sitemap",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-project": "node dist/angular-project/server/server.mjs"
+    "serve:ssr:angular-project": "node dist/angular-project/server/server.mjs",
+    "generate:sitemap": "ts-node -P tsconfig.scripts.json scripts/generate-sitemap.ts"
   },
   "private": true,
   "dependencies": {
@@ -32,12 +34,15 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
+    "date-fns": "^4.1.0",
+    "fast-xml-parser": "^5.0.9",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "~5.7.2"
   }
 }
