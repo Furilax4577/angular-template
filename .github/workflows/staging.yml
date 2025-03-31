@@ -16,8 +16,8 @@ jobs:
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
 
       DNS: testation.walrus-labs.fr
-      VPS_DEPLOY_PATH: ~/www/${{ DNS }}_staging
-      BASE_URL: https://staging.${{ DNS }}
+      VPS_DEPLOY_PATH: ~/www/$DNS_staging
+      BASE_URL: https://staging.$DNS
 
     steps:
       - name: 📥 Cloner le dépôt
@@ -32,4 +32,4 @@ jobs:
         run: |
           docker build \ 
             --build-arg BASE_URL=$BASE_URL \
-            -t ${{ DNS }}_staging .
+            -t $DNS_staging .
