@@ -33,3 +33,24 @@ jobs:
           docker build \ 
             --build-arg BASE_URL=$BASE_URL \
             -t $DNS_staging .
+
+      - name: 🔑 Ajouter la clé SSH du serveur
+        run: |
+          mkdir -p ~/.ssh
+          echo "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 $VPS_IP >> ~/.ssh/known_hosts
+
+      - name: 📂 Créer le répertoire cible sur le serveur
+        run: ssh -i ~/.ssh/id_ed25519 $VPS_USER@$VPS_IP "mkdir -p $VPS_DEPLOY_PATH && chmod 755 $VPS_DEPLOY_PATH"
+
+      - name: 🚀 Déploiement rapide avec `rsync`
+              run: |
+                rsync -azP --delete --exclude=node_modules -e "ssh -i ~/.ssh/id_ed25519" ./ $VPS_USER@$VPS_IP:$VPS_DEPLOY_PATH
+
+      - name: 🐳 Déployer le conteneur via Docker Compose
+        run: |
+          ssh -i ~/.ssh/id_ed25519 $VPS_USER@$VPS_IP << EOF
+          cd $VPS_DEPLOY_PATH
+          docker compose up -d --build
+          EOF
