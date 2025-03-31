@@ -1,0 +1,35 @@
+name: Deploy de "angular-project" en staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: master
+
+    env:
+      VPS_IP: ${{ secrets.VPS_IP }}
+      VPS_USER: ${{ secrets.VPS_USER }}
+      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+
+      DNS: testation.walrus-labs.fr
+      VPS_DEPLOY_PATH: ~/www/${{ DNS }}_staging
+      BASE_URL: https://staging.${{ DNS }}
+
+    steps:
+      - name: 📥 Cloner le dépôt
+        uses: actions/checkout@v3
+
+      - name: 🔧 Installer Node.js et npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: 🐳 Build et tag de l'image Docker
+        run: |
+          docker build \ 
+            --build-arg BASE_URL=$BASE_URL \
+            -t ${{ DNS }}_staging .
