@@ -61,5 +61,6 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_ed25519 $VPS_USER@$VPS_IP << EOF
           cd $VPS_DEPLOY_PATH
+          export BASE_URL="${BASE_URL}"
           docker compose up -d --build
           EOF
