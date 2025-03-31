@@ -34,7 +34,9 @@ const urls: string[] = Object.keys(prerenderedRoutes.routes).map((route) =>
   route === '/' ? baseURL : `${baseURL}${route}`
 );
 
-console.log(`✅ Génération de ${urls.length} routes dans sitemap.xml`);
+console.log(
+  `✅ Génération de ${urls.length} routes dans sitemap.xml pour le site ${baseURL}`
+);
 
 // === Build XML ===
 const xmlBuilderOptions: XmlBuilderOptions = {

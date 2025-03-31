@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: master
+    environment: develop
 
     env:
       VPS_IP: ${{ secrets.VPS_IP }}
