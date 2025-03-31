@@ -21,7 +21,7 @@ jobs:
       - name: Construire BASE_URL et VPS_DEPLOY_PATH
         run: |
           echo "BASE_URL=https://$DNS" >> $GITHUB_ENV
-          echo "VPS_DEPLOY_PATH=~/www/$DNS" >> $GITHUB_ENV
+          echo "VPS_DEPLOY_PATH=~/www/${DNS}_staging" >> $GITHUB_ENV
 
       - name: Afficher la valeur de variables
         run: |

@@ -21,7 +21,7 @@ jobs:
       - name: Construire BASE_URL et VPS_DEPLOY_PATH
         run: |
           echo "BASE_URL=https://staging.$DNS" >> $GITHUB_ENV
-          echo "VPS_DEPLOY_PATH=~/www/$DNS_staging" >> $GITHUB_ENV
+          echo "VPS_DEPLOY_PATH=~/www/${DNS}_staging" >> $GITHUB_ENV
 
       - name: Afficher la valeur de variables
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: |
           docker build \ 
             --build-arg BASE_URL=$BASE_URL \
-            -t $DNS_staging .
+            -t "${DNS}_staging" .
 
       - name: 🔑 Ajouter la clé SSH du serveur
         run: |
