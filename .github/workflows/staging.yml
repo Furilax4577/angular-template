@@ -15,7 +15,7 @@ jobs:
       VPS_USER: ${{ secrets.VPS_USER }}
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       DNS: testation.walrus-labs.fr
-      EXPOSED_PORT: 4000
+      EXPOSED_PORT: 7010
 
     steps:
       - name: Construire BASE_URL et VPS_DEPLOY_PATH
@@ -62,5 +62,6 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 $VPS_USER@$VPS_IP << EOF
           cd $VPS_DEPLOY_PATH
           export BASE_URL="${BASE_URL}"
+          export EXPOSED_PORT="${EXPOSED_PORT}"
           docker compose up -d --build
           EOF
