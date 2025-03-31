@@ -41,7 +41,7 @@ jobs:
         run: |
           docker build \
             --build-arg BASE_URL=$BASE_URL \
-            -t ~/www/${DNS}_staging .
+            -t ${DNS}_staging .
 
       - name: 🔑 Ajouter la clé SSH du serveur
         run: |
