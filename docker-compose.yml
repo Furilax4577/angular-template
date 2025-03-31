@@ -1,11 +1,11 @@
 services:
   angular-app:
-    build: .
+    build:
+      context: .
+      args:
+        BASE_URL: ${BASE_URL}
     restart: always
-    args:
-      BASE_URL: ${BASE_URL}
-  environment:
-    BASE_URL: ${BASE_URL}
+
   nginx:
     image: nginx:alpine
     restart: always
