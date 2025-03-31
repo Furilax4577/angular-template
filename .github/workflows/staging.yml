@@ -39,9 +39,9 @@ jobs:
 
       - name: 🐳 Build et tag de l'image Docker
         run: |
-          docker build \ 
+          docker build \
             --build-arg BASE_URL=$BASE_URL \
-            -t "${DNS}_staging" .
+            -t ~/www/${DNS}_staging .
 
       - name: 🔑 Ajouter la clé SSH du serveur
         run: |
