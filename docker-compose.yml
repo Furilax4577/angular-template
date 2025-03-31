@@ -2,6 +2,8 @@ services:
   angular-app:
     build: .
     restart: always
+    args:
+      BASE_URL: ${BASE_URL}
   nginx:
     image: nginx:alpine
     restart: always
