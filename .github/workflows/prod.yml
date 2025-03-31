@@ -15,7 +15,7 @@ jobs:
       VPS_USER: ${{ secrets.VPS_USER }}
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       DNS: testation.walrus-labs.fr
-      APP_PORT: 4010
+      EXPOSED_PORT: 4010
 
     steps:
       - name: Construire BASE_URL et VPS_DEPLOY_PATH
@@ -40,6 +40,7 @@ jobs:
       - name: 🐳 Build et tag de l'image Docker
         run: |
           docker build \
+            --build-arg BASE_URL=$BASE_URL \
             -t $DNS .
 
       - name: 🔑 Ajouter la clé SSH du serveur

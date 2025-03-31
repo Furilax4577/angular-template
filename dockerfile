@@ -1,6 +1,9 @@
 # ---------- STAGE 1 : build Angular SSR ----------
     FROM node:20-alpine AS builder
 
+    ARG BASE_URL
+    ENV BASE_URL=$BASE_URL
+
     WORKDIR /app
     
     # Copier package.json et installer dépendances
