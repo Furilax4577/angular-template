@@ -15,14 +15,18 @@ jobs:
       VPS_USER: ${{ secrets.VPS_USER }}
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       DNS: "testation.walrus-labs.fr"
-      VPS_DEPLOY_PATH: "~/www/${{ env.DNS }}_staging"
-      BASE_URL: "https://staging.${{ env.DNS }}"
 
     steps:
+      - name: Construire BASE_URL et VPS_DEPLOY_PATH
+        run: |
+          echo "BASE_URL=https://staging.$DNS" >> $GITHUB_ENV
+          echo "VPS_DEPLOY_PATH=~/www/$DNS_staging" >> $GITHUB_ENV
+
       - name: Afficher la valeur de variables
         run: |
           echo "DNS = $DNS"
           echo "BASE_URL = $BASE_URL"
+          echo "VPS_DEPLOY_PATH = $VPS_DEPLOY_PATH"
 
       - name: 📥 Cloner le dépôt
         uses: actions/checkout@v3

@@ -19,10 +19,16 @@ jobs:
       BASE_URL: "https://${{ env.DNS }}"
 
     steps:
+      - name: Construire BASE_URL et VPS_DEPLOY_PATH
+        run: |
+          echo "BASE_URL=https://$DNS" >> $GITHUB_ENV
+          echo "VPS_DEPLOY_PATH=~/www/$DNS" >> $GITHUB_ENV
+
       - name: Afficher la valeur de variables
         run: |
           echo "DNS = $DNS"
           echo "BASE_URL = $BASE_URL"
+          echo "VPS_DEPLOY_PATH = $VPS_DEPLOY_PATH"
 
       - name: 📥 Cloner le dépôt
         uses: actions/checkout@v3
