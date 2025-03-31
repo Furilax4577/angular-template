@@ -1,3 +1,6 @@
+// === Load .env file early ===
+import 'dotenv/config';
+
 import { format } from 'date-fns/format';
 import { XMLBuilder, XmlBuilderOptions } from 'fast-xml-parser';
 import * as fs from 'fs';
@@ -5,7 +8,14 @@ import * as path from 'path';
 
 // === CONFIGURATION ===
 const appName = process.env['APP_NAME'] || 'angular-project';
-const baseURL = process.env['BASE_URL'] || `https://example.com`;
+const baseURL = process.env['BASE_URL'];
+
+if (!baseURL) {
+  console.error(
+    `❌ La variable d'environnement BASE_URL est requise mais absente.`
+  );
+  process.exit(1);
+}
 
 // === Load prerendered routes ===
 const prerenderedPath = path.join(
@@ -57,3 +67,17 @@ const outputPath = path.join(
 );
 fs.writeFileSync(outputPath, xmlContent);
 console.log(`✅ sitemap.xml généré : ${outputPath}`);
+
+// === Write robots.txt ===
+const robotsTxtContent = `User-agent: *
+Disallow:
+
+Sitemap: ${baseURL}/sitemap.xml
+`;
+
+const robotsPath = path.join(
+  __dirname,
+  `../dist/${appName}/browser/robots.txt`
+);
+fs.writeFileSync(robotsPath, robotsTxtContent);
+console.log(`✅ robots.txt généré : ${robotsPath}`);
