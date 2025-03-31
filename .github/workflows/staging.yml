@@ -45,8 +45,8 @@ jobs:
         run: ssh -i ~/.ssh/id_ed25519 $VPS_USER@$VPS_IP "mkdir -p $VPS_DEPLOY_PATH && chmod 755 $VPS_DEPLOY_PATH"
 
       - name: 🚀 Déploiement rapide avec `rsync`
-              run: |
-                rsync -azP --delete --exclude=node_modules -e "ssh -i ~/.ssh/id_ed25519" ./ $VPS_USER@$VPS_IP:$VPS_DEPLOY_PATH
+        run: |
+          rsync -azP --delete --exclude=node_modules -e "ssh -i ~/.ssh/id_ed25519" ./ $VPS_USER@$VPS_IP:$VPS_DEPLOY_PATH
 
       - name: 🐳 Déployer le conteneur via Docker Compose
         run: |
