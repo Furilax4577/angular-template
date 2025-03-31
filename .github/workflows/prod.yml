@@ -16,9 +16,14 @@ jobs:
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       DNS: testation.walrus-labs.fr
       VPS_DEPLOY_PATH: ~/www/$DNS
-      BASE_URL: https://staging.$DNS
+      BASE_URL: https://$DNS
 
     steps:
+      - name: Afficher la valeur de variables
+        run: |
+          echo "DNS = $DNS"
+          echo "BASE_URL = $BASE_URL"
+
       - name: 📥 Cloner le dépôt
         uses: actions/checkout@v3
 
