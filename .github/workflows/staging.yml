@@ -3,12 +3,11 @@ name: Deploy de "angular-project" en staging
 on:
   push:
     branches:
-      - develop
+      - staging
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: develop
 
     env:
       VPS_IP: ${{ secrets.VPS_IP }}
