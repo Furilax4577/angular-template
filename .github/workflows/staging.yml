@@ -8,12 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     env:
       VPS_IP: ${{ secrets.VPS_IP }}
       VPS_USER: ${{ secrets.VPS_USER }}
       VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       DNS: testation.walrus-labs.fr
-      EXPOSED_PORT: 7010
+      EXPOSED_PORT: 7001
 
     steps:
       - name: Construire BASE_URL et VPS_DEPLOY_PATH
