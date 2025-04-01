@@ -5,11 +5,6 @@ services:
       args:
         BASE_URL: ${BASE_URL}
     restart: always
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   nginx:
     image: nginx:alpine
