@@ -1,0 +1,11 @@
+<ng-container *ngIf="isBrowser && shouldShowBanner">
+  <div class="cookie-banner">
+    <p>
+      Ce site utilise des cookies uniquement à des fins de mesure d’audience.
+    </p>
+    <div class="cookie-buttons">
+      <button (click)="accept()">Accepter</button>
+      <button (click)="refuse()">Refuser</button>
+    </div>
+  </div>
+</ng-container>
