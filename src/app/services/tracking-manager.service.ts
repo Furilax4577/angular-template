@@ -10,6 +10,7 @@ import { AnalyticsService } from './analytics.service';
 export class TrackingManagerService {
   private isBrowser: boolean;
   private alreadyInitialized = false;
+  private analyticsBypassConsent: boolean;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -18,6 +19,12 @@ export class TrackingManagerService {
     private router: Router
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
+
+    this.analyticsBypassConsent = this.getBypassConsentFlag();
+
+    if (this.analyticsBypassConsent) {
+      this.startTracking();
+    }
   }
 
   initIfConsented(): void {
@@ -46,5 +53,11 @@ export class TrackingManagerService {
       .subscribe((event: NavigationEnd) => {
         this.analyticsService.sendPageView(event.urlAfterRedirects);
       });
+  }
+
+  private getBypassConsentFlag(): boolean {
+    if (!this.isBrowser) return false;
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('bypassconsent') === 'true';
   }
 }
