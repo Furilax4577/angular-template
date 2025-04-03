@@ -6,7 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class AnalyticsService {
-  private trackingId = 'G-05JW2Z9EX1';
+  private trackingId = 'G-T8QE4Y4B0S';
   private initialized = false;
   private isBrowser: boolean;
 
