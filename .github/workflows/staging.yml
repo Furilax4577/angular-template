@@ -42,7 +42,7 @@ jobs:
           mkdir -p public
           cat <<EOF > public/config.json
           {
-            "john": "doe", 
+            "john": "doe"
           }
           EOF
 
