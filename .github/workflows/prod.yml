@@ -36,6 +36,16 @@ jobs:
         with:
           node-version: 22
 
+      # - name: 🧩 Générer config.json dans `public`
+      #   run: |
+      #     echo "📦 Génération de public/config.json"
+      #     mkdir -p public
+      #     cat <<EOF > public/config.json
+      #     {
+      #       "john": "${doe}",
+      #     }
+      #     EOF
+
       - name: 🐳 Build et tag de l'image Docker
         run: |
           docker build \
