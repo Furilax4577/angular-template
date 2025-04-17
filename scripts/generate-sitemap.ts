@@ -5,7 +5,7 @@ import * as path from 'path';
 
 // === CONFIGURATION ===
 const appName = process.env['APP_NAME'] || 'angular-project';
-const baseURL = process.env['BASE_URL'];
+const baseURL = process.env['BASE_URL'] || 'https://mon-super-site.fr';
 
 if (!baseURL) {
   console.error(

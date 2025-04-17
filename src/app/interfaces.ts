@@ -1,3 +1,3 @@
-export interface Testation {
-  label: string;
+export interface AppConfig {
+  john: string;
 }

@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TrackingManagerService } from './services/tracking-manager.service';
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { ConfigService } from './services/config.service';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,11 @@ import { Meta, Title } from '@angular/platform-browser';
 export class AppComponent {
   constructor(
     private trackingManager: TrackingManagerService,
+    private configService: ConfigService,
     private meta: Meta,
     private title: Title
   ) {
+    console.log('config:', this.configService.getConfig());
     this.title.setTitle('Angular project');
     this.meta.updateTag({
       name: 'description',
