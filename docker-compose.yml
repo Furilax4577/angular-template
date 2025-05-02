@@ -4,14 +4,6 @@ services:
       context: .
       args:
         BASE_URL: ${BASE_URL}
-    restart: always
-
-  nginx:
-    image: nginx:alpine
-    restart: always
     ports:
-      - "${EXPOSED_PORT}:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - angular-app
+      - "${EXPOSED_PORT}:4000"
+    restart: always
