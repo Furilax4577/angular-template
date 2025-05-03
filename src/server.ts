@@ -20,7 +20,14 @@ app.use((req, res, next) => {
 
   res.setHeader(
     'Content-Security-Policy',
-    `default-src 'self'; script-src 'self' 'nonce-${nonce}'; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; report-uri /csp-violation-report-endpoint;`
+    `base-uri 'self';
+     default-src 'self';
+     script-src 'self' 'nonce-${nonce}' 'unsafe-inline';
+     script-src-attr 'unsafe-inline';
+     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+     font-src 'self' https://fonts.gstatic.com;
+     object-src 'none';
+     report-uri /csp-violation-report-endpoint;`.replace(/\s+/g, ' ')
   );
 
   next();
